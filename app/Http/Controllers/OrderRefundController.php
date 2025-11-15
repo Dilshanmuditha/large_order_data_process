@@ -35,14 +35,6 @@ class OrderRefundController extends Controller
                     'data' => null
                 ], 404);
             }
-            
-            if ($customer->id != $orderToRefund->customer_id) {
-                return response()->json([
-                    'status' => 'failed',
-                    'message' => 'The provided email address does not match the customer for this order.',
-                    'data' => null
-                ], 403);
-            }
 
             if (!$orderToRefund) {
                 return response()->json([
@@ -50,6 +42,14 @@ class OrderRefundController extends Controller
                     'message' => 'Order not found.',
                     'data' => null
                 ], 404);
+            }
+            
+            if ($customer->id != $orderToRefund->customer_id) {
+                return response()->json([
+                    'status' => 'failed',
+                    'message' => 'The provided email address does not match the customer for this order.',
+                    'data' => null
+                ], 403);
             }
             
             if ($orderToRefund->status !== 'completed') {
