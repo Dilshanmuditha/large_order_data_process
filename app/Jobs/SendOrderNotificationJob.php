@@ -25,7 +25,6 @@ class SendOrderNotificationJob implements ShouldQueue
      */
     public function __construct(array $orderData)
     {
-        $this->onQueue('notifications');
         $this->orderData = $orderData;
     }
 
@@ -39,8 +38,6 @@ class SendOrderNotificationJob implements ShouldQueue
         $orderId = $this->orderData['order_id'];
         $customerId = $this->orderData['customer_id'];
         $email = $this->orderData['customer_email'];
-        
-        $notificationType = 'email';
 
         if ($status === 'completed') {
             Mail::to($email)->send(new OrderCompletedMail($this->orderData));
@@ -56,7 +53,6 @@ class SendOrderNotificationJob implements ShouldQueue
                 'customer_id' => $customerId,
                 'status'      => $status,
                 'total_cents' => $this->orderData['total_cents'],
-                'type'        => $notificationType,
                 'message'     => $finalMessage,
             ]);
         } catch (\Exception $e) {

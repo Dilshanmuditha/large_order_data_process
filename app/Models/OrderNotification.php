@@ -14,7 +14,6 @@ class OrderNotification extends Model
         'customer_id',
         'status',
         'total_cents',
-        'type',
         'message',
     ];
 
