@@ -24,3 +24,6 @@ This system does the getting large scale of order data from a csv file via Php c
 8. run - php artisan orders:file-import restaurant_orders.csv
 9. get kpi and leaderboard run - php artisan kpis:show {date(2025-11-14)}
 10. refund request - run the api with order id
+
+## Explained video url
+https://loom.com/share/folder/91372b330b3d44638d3f5a2794025ec9
